@@ -12,3 +12,19 @@ require 'pry'
     # Probably not on WSL
 # Otherwise if file doesn't exist or isn't a .js file, raise exception
 
+class JS2HTML
+  def initialize
+    @js_file = ARGV[0]
+    unless @js_file && is_real_js_file?(@js_file)
+      raise ArgumentError.new('Invalid file argument. (Does it exist and is it a JS file?)')
+    end
+    @destination = ARGV[1] || '.'
+    puts "File #{@js_file} exists!"
+  end
+
+  def is_real_js_file?(file_string)
+    File.exist?(file_string) && file_string.match(/.*\.js$/)
+  end
+end
+
+JS2HTML.new
