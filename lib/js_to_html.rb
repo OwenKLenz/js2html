@@ -13,13 +13,22 @@ require 'pry'
 # Otherwise if file doesn't exist or isn't a .js file, raise exception
 
 class JS2HTML
+  @@template_path = File.expand_path(File.dirname(__FILE__) + "/../template.html")
+
   def initialize
     @js_file = ARGV[0]
+
     unless @js_file && is_real_js_file?(@js_file)
       raise ArgumentError.new('Invalid file argument. (Does it exist and is it a JS file?)')
     end
-    @destination = ARGV[1] || '.'
-    puts "File #{@js_file} exists!"
+
+    # @destination = ARGV[1] || '.'
+  end
+
+  def generate_js2html_file
+    text = File.read(@@template_path)
+    text.sub!('js_path', @js_file)
+    File.write(@js_file.match(/^[^.]+/)[0] + '.html', text)
   end
 
   def is_real_js_file?(file_string)
@@ -27,4 +36,4 @@ class JS2HTML
   end
 end
 
-JS2HTML.new
+JS2HTML.new.generate_js2html_file
