@@ -1,7 +1,6 @@
 #! /usr/bin/env ruby
 
 require 'bundler/setup'
-require 'pry'
 # Take a single filename argument (ARGV[1])
 # If 2nd argument given, treat as file write destination
 
@@ -21,8 +20,6 @@ class JS2HTML
     unless @js_file && is_real_js_file?(@js_file)
       raise ArgumentError.new('Invalid file argument. (Does it exist and is it a JS file?)')
     end
-
-    # @destination = ARGV[1] || '.'
   end
 
   def generate_js2html_file
