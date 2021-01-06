@@ -6,5 +6,5 @@ I built this to simplify the process of running simple front end JS exercises in
 
 Usage:
 ```bash
-$ js2html file_name.js // Generates an HTML file in the current directory with the same name as the js file used as an argument
+$ js2html file_name.js # Generates an HTML file in the current directory with the same name as the js file used as an argument
 ````
